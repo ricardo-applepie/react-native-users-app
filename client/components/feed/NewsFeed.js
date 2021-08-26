@@ -5,19 +5,16 @@ import ProfileImage from '../profileImage/ProfileImage';
 
 function NewsFeed(){
 const [newsFeed,setNewsFeed] = useState([1,2,3,4,5,6,7,8,9]);
-
     return (
         <View style={{flexDirection:'column'}}>
             {newsFeed.map(
-                function(post){
+                function(post,index){
                     return(
-                     <View> 
-                           
-                            <Post/>
+                     <View key={index}> 
+                        <Post/>
                      </View>
-              )
-              } 
-             )}
+              )} 
+            )}
         </View>
     )
 }

@@ -6,6 +6,7 @@ function HomeScreen({ navigation }) {
     return (
         <View style={{ height: '100%'} } >
             <ScrollView>
+                
             <View style={{height:'85%'}}>
 
                 <NewsFeed/>

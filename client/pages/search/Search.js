@@ -37,10 +37,10 @@ function Search(){
                 <View>
                     {usersList.filter(user => user.name.toLowerCase().includes(searchInput))
                     .map(
-                        function(user){
+                        function(user,index){
                             return(
                            
-                                    <View style={styles.container}>
+                                <View key={index} style={styles.container}>
                                         <ProfileImage />
                                         <Text style={styles.username}>
                                             {user.name}

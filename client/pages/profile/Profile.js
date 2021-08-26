@@ -56,7 +56,15 @@ function Profile({ navigation }) {
             <View style={{marginTop:40,marginBottom:20}}>
                 <Button
                     title="Edit profile"
-                    onPress={() => navigation.navigate('Chat')}
+                    onPress={() =>{
+                        try {
+                            navigation.navigate('Register')
+                        } catch (error) {
+                            console.log(error)
+                        }
+                    }
+                        
+                    }
                 />
             </View>
              
