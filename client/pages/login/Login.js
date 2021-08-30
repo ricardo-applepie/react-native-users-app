@@ -3,7 +3,7 @@ import { Link } from '@react-navigation/native';
 
 import { Alert,Button,View,StyleSheet, TextInput ,Text} from 'react-native';
 
-function Login() {
+function Login(authState) {
 
     const [passwordValue,SetPasswordValue]=useState('');
     const [emailValue, SetemailValue] = useState('');
@@ -14,7 +14,20 @@ function Login() {
     function onChangePassword(text ){
         SetPasswordValue(text )
     }
-
+    let logindetails={
+        emailValue,
+        passwordValue
+    }
+     function LoginUser (){
+         fetch('http://192.168.137.129:4000/login', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(logindetails),
+        }).then(data=>console.log(data))
+      
+    }
     return (
         <View>
            <View style={styles.loginImage}>
@@ -23,7 +36,7 @@ function Login() {
            <View style={styles.inputWrapper}>
                 <TextInput
                     style={styles.input}
-                    onChangeText={(e)=>onChangeEmail(e)}
+                    onChangeText={(text) => onChangeEmail(text)}
                     value={emailValue}
                     placeholder="email"
                    
@@ -41,7 +54,7 @@ function Login() {
                         <Button
                             
                             title="Login"
-                            onPress={() => Alert.alert('Simple Button pressed')}
+                            onPress={() => LoginUser()}
                         />
                     </View>
                     <View style={styles.loginLinkWrapper}>

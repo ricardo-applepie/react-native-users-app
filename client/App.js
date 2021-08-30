@@ -9,29 +9,26 @@ import Comments from './components/comments/Comments';
 import Search from './pages/search/Search';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
-import { useNavigation } from '@react-navigation/native';
+const axios = require('axios');
 
 const Stack = createNativeStackNavigator();
 
 function App() {
-
-
-  const [isSignedIn, SetIsSignedIn ] =React.useState(false);
-
-  function handleRegsiter(){
-    
-    SetIsSignedIn(!isSignedIn);
-  }
+const [isSignedIn, SetIsSignedIn ] =React.useState(false);
+const [data,setData]=React.useState('')
 
   return (
+    
     <NavigationContainer>
       <Stack.Navigator initialRouteName={'Home'}>
         {!isSignedIn?(
             <>
             <Stack.Screen name="Register">
-              {props => <Register {...props} handleUserRegister={handleRegsiter} />}
+              {props => <Register {...props} authState={SetIsSignedIn} data={data}/>}
             </Stack.Screen>
-              <Stack.Screen name="Login" component={Login} />
+              <Stack.Screen name="Login" >
+              {props => <Login {...props} authState={SetIsSignedIn}  />}
+              </Stack.Screen>
             </>
         ):(
            <>

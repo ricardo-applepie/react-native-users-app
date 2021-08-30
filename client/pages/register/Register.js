@@ -3,34 +3,68 @@ import { Link } from '@react-navigation/native';
 
 import { Alert, Button, View, StyleSheet, TextInput, Text } from 'react-native';
 
-function Login({ handleUserRegister}) {
+function Register({ authState,data}) {
 
     const [passwordValue, SetPasswordValue] = useState('');
     const [emailValue, SetemailValue] = useState('');
     const [usernameValue, SetUsernameValue]= useState('');
+
+    const [username,setUsername]=useState("");
+    const [email, setEmail] = useState("");
+    const [password,Setpassword]= useState("");
     
+    function onChangeUsername(text) {
+        SetUsernameValue(text)
+        setUsername(text)
+    }
     function onChangeEmail(text) {
         SetemailValue(text)
+        setEmail(text)
     }
     function onChangePassword(text) {
         SetPasswordValue(text);
+        Setpassword(text);
+    }
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+    const dateObj = new Date();
+    const month = monthNames[dateObj.getMonth()];
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    const year = dateObj.getFullYear();
+    const createdAt = month + '\n' + day + ',' + year;
+
+    
+    let logindetails = {
+        username,
+        email,
+        password,
+        createdAt
+    }
+    function handleRegsiter() {
+        let url = 'http://192.168.137.129:4000/users'
+        fetch(url, {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(logindetails),
+        })
+        authState(true)
     }
 
-   function  onChangeUsername(text){
-       SetUsernameValue(text)
-    }
+   
 
     return (
         <View>
             <View style={styles.loginImage}>
-                <Text >ReChat</Text>
+                <Text >ReChat {data.name}</Text>
             </View>
             <View style={styles.inputWrapper}>
                 <TextInput
                     style={styles.input}
-                    onChangeText={(text) => onChangePassword(text)}
+                    onChangeText={(text) => { onChangeUsername(text) } }
                     value={usernameValue}
-                    secureTextEntry={true}
+                    
                     placeholder="username"
 
                 />
@@ -56,11 +90,12 @@ function Login({ handleUserRegister}) {
                         <Button
 
                             title="Register"
-                            onPress={() => handleUserRegister()}
+                            onPress={() => handleRegsiter()}
                         />
                     </View>
                     <View style={styles.loginLinkWrapper}>
-                        <Text>Already have and account ? please
+                        
+                        <Text> Already have and account ? please
                             <Text style={{ color: 'blue' }}>
                                 <Link to={{ screen: 'Login', params: { id: 'jane' } }}>
                                     &nbsp; login
@@ -107,4 +142,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Login;
+export default Register;
