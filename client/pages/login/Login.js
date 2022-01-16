@@ -9,13 +9,16 @@ function Login(authState) {
   function onChangeEmail(text) {
     SetemailValue(text);
   }
+
   function onChangePassword(text) {
     SetPasswordValue(text);
   }
+
   let logindetails = {
     emailValue,
     passwordValue,
   };
+
   function LoginUser() {
     fetch('http://192.168.137.129:4000/login', {
       method: 'POST', // or 'PUT'
@@ -25,6 +28,7 @@ function Login(authState) {
       body: JSON.stringify(logindetails),
     }).then(data => console.log(data));
   }
+
   return (
     <View>
       <View style={styles.loginImage}>
