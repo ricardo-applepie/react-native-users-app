@@ -29,6 +29,7 @@ function Search() {
     console.log(text);
     setSearchInput(text);
   }
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.container}>
