@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 });
+
 function Username() {
   return (
     <View style={{marginLeft: 3}}>
