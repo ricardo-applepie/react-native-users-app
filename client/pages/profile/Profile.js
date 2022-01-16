@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import {View, Text, Button, StyleSheet} from 'react-native';
 import UserInformation from '../../components/userInformation/UserInformation';
 import ProfileImage from '../../components/profileImage/ProfileImage';
