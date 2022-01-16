@@ -15,14 +15,17 @@ function Register({authState, data}) {
     SetUsernameValue(text);
     setUsername(text);
   }
+
   function onChangeEmail(text) {
     SetemailValue(text);
     setEmail(text);
   }
+
   function onChangePassword(text) {
     SetPasswordValue(text);
     Setpassword(text);
   }
+
   const monthNames = [
     'January',
     'February',
@@ -37,6 +40,7 @@ function Register({authState, data}) {
     'November',
     'December',
   ];
+
   const dateObj = new Date();
   const month = monthNames[dateObj.getMonth()];
   const day = String(dateObj.getDate()).padStart(2, '0');
@@ -49,6 +53,7 @@ function Register({authState, data}) {
     password,
     createdAt,
   };
+
   function handleRegsiter() {
     let url = 'http://192.168.137.129:4000/users';
     fetch(url, {
